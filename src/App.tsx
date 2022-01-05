@@ -13,9 +13,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />}/>
-        <Route path="*" element={<NotFound />}/>
         <Route path="/home" element={<HomePage />}/>
         <Route path="/new" element={<Register />} />
+        <Route path="*" element={<NotFound />}/>
       </Routes>
       <Footer />
     </div>
