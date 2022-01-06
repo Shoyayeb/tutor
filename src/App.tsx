@@ -4,6 +4,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./Pages/HomePage/HomePage/HomePage";
+import Login from './Pages/LoginRegister/Login/Login';
 import Register from './Pages/LoginRegister/Register/Register';
 import NotFound from "./Pages/NotFound/NotFound";
 import Footer from './Pages/Shared/Footer';
@@ -31,7 +32,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}/>
         <Route path="/home" element={<HomePage />}/>
-        <Route path="/new" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />}/>
       </Routes>
       <Footer />

@@ -9,12 +9,12 @@ import Toolbar from "@mui/material/Toolbar";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 const Navbar = () => {
-  const defaultColor = lightBlue[500];
+  const defaultColor = lightBlue[400];
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(defaultColor),
     backgroundColor: defaultColor,
     "&:hover": {
-      backgroundColor: lightBlue[600],
+      backgroundColor: lightBlue[800],
     },
   }));
 
@@ -46,7 +46,7 @@ const Navbar = () => {
               textShadow: "2px 2px 5px lightblue",
             }}
           >
-            TuTor
+            tutor
           </Typography>
           <nav>
             <Link
