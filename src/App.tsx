@@ -1,4 +1,5 @@
 
+import { createTheme, ThemeProvider } from "@mui/material";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -9,8 +10,23 @@ import Footer from './Pages/Shared/Footer';
 import Navbar from './Pages/Shared/Navbar';
 
 function App() {
+  const theme = createTheme({
+    typography: {
+      fontFamily: "Poppins, Arial",
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          @font-face {
+            font-family: 'Poppins';
+            font-weight: 400;
+          }
+        `,
+      },
+    },
+  });
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage />}/>
@@ -19,7 +35,7 @@ function App() {
         <Route path="*" element={<NotFound />}/>
       </Routes>
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
 
