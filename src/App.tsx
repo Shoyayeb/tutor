@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -10,7 +11,7 @@ import Navbar from './Pages/Shared/Navbar';
 function App() {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage />}/>
         <Route path="/home" element={<HomePage />}/>
