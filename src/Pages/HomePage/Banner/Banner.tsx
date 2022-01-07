@@ -1,15 +1,13 @@
 import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
+import BannerImage from "../../../assets/banner.png";
 import bg from "../../../assets/rect.png";
-import BannerImage from "../../../assets/transbg.png";
-
 
 const Banner = () => {
   return (
     <div>
       <Paper
         sx={{
-          position: "relative",
           //   backgroundColor: "grey.800",
           color: "#fff",
           mb: 4,
@@ -18,19 +16,49 @@ const Banner = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundImage: `url(${bg})`,
-          minHeight: "100vh",
-          //   filter: 'blur(10px)',
+          minHeight: "100%",
+          opacity: ".8",
         }}
       >
-        <Container sx={{display: 'flex',justifyContent: 'center',alignItems: 'center',}}>
-          <div style={{width:"50%"}}>
-            <Typography sx={{ color: "black", fontSize: "50px" }}>
-              Experienced mobile and web applications and website builders
-              measuring.
+        <Container
+          sx={{
+            // position: "relative",
+            py: 5,
+            display: "flex",
+            justifyContent: "center",
+            // alignItems: "center",
+          }}
+        >
+          {/* slogan */}
+          <Container sx={{ width: "50%", mt: { xs: 0, md: 5 } }}>
+            <Typography
+              sx={{ color: "black", fontSize: "40px", fontWeight: "500" }}
+            >
+              Start Learning Now From{" "}
+              <span style={{ color: "#29b6f6" }}>Teachers</span> Around The
+              World
             </Typography>
-          </div>
-          <div style={{width:"50%"}}>
-              <img src={BannerImage} style={{width: "100%",}} alt="banner" loading="lazy" />
+            
+          </Container>
+          {/* img */}
+          <div style={{ width: "50%", position: "relative" }}>
+            <img
+              src={BannerImage}
+              style={{
+                width: "100%",
+                filter: "blur(30px)",
+                position: "absolute",
+                inset: 0,
+              }}
+              alt="banner"
+              loading="lazy"
+            />
+            <img
+              src={BannerImage}
+              style={{ width: "100%", position: "relative" }}
+              alt="banner"
+              loading="lazy"
+            />
           </div>
         </Container>
       </Paper>
