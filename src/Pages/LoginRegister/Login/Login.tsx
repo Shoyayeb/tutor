@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import bg from "../../../assets/bg.png";
-import BannerImage from "../../../assets/loginRegister1.png";
+import LoginBanner from "../../../assets/loginRegister1.png";
 const Login = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,20 +37,20 @@ const Login = () => {
     >
       <Container sx={{ width: "50%", position: "relative" }}>
         <img
-          src={BannerImage}
+          src={LoginBanner}
           style={{
             width: "100%",
-            filter: "blur(35px) brightness(120%) contrast(130%)",
+            filter: "blur(35px) brightness(150%) contrast(150%)",
             position: "absolute",
             inset: 0,
           }}
-          alt="banner"
+          alt="LoginBanner"
           loading="lazy"
         />
         <img
-          src={BannerImage}
+          src={LoginBanner}
           style={{ width: "100%", position: "relative" }}
-          alt="banner"
+          alt="LoginBanner"
           loading="lazy"
         />
       </Container>
