@@ -52,7 +52,7 @@ const Navbar = () => {
             <Link
               style={{ textTransform: "none" }}
               component={RouterLink}
-              to="/login"
+              to="/home"
               variant="button"
               color="text.primary"
               href="#"
@@ -88,14 +88,14 @@ const Navbar = () => {
             <Link
               style={{ textTransform: "none" }}
               component={RouterLink}
-              to="/login"
+              to="/register"
               variant="button"
               color="text.primary"
               href="#"
               underline="none"
               sx={{ my: 1, mx: 1.5 }}
             >
-              Features
+              Register
             </Link>
           </nav>
           <RouterLink to="/login">
