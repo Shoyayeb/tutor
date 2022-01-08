@@ -1,5 +1,9 @@
 import {
-    createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Firebase/firebase.init";
@@ -7,6 +11,7 @@ import initializeFirebase from "../Firebase/firebase.init";
 initializeFirebase();
 const useFirebase = () => {
   const [user, setUser] = useState({});
+  const [error, setError] = useState("");
 
   const auth = getAuth();
 
@@ -19,18 +24,37 @@ const useFirebase = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(errorMessage);
       });
   };
 
+  // login user with email and password
+  const loginUserByEmail = (email: string, password: string) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  // managing user
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        setUser(user)
+        setUser(user);
+        console.log(user);
+        
       } else {
-        setUser({})
+        setUser({});
+        console.log(user);
+        
       }
     });
+    return () => unsubscribe();
   }, []);
 
   //   sign out
@@ -40,14 +64,16 @@ const useFirebase = () => {
         //   sign out successfully
       })
       .catch((error) => {
-        //   error occurred
+        setError(error.message);
       });
   };
 
   return {
     user,
+    error,
     createUserByEmail,
     signOutUser,
+    loginUserByEmail,
   };
 };
 export default useFirebase;
