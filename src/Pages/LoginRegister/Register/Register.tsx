@@ -12,6 +12,7 @@ import bg from "../../../assets/bg.png";
 import LoginBanner from "../../../assets/loginRegister.png";
 
 const Register = () => {
+  // const {createUserByEmail,error,user} = useFirebase;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,6 +21,7 @@ const Register = () => {
       email: data.get("email"),
       password: data.get("password"),
     });
+    // createUserByEmail(data.get("email"), data.get("password"));
   };
   return (
     <Box
