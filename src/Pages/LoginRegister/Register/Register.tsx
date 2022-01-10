@@ -8,28 +8,48 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import React, { useState } from "react";
 import bg from "../../../assets/bg.png";
 import LoginBanner from "../../../assets/loginRegister.png";
 import useAuth from "../../../Hooks/useAuth";
 // import useAuth from "../../../Hooks/useAuth";
 
 const Register = () => {
-  const { createUserByEmail, signOutUser, loginUserByEmail,error,user } = useAuth();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-    createUserByEmail(data.get("email"), data.get("password"));
-    console.log(data.get("email"), data.get("password"));
+  const [registerData, setRegisterData] = useState<any>({});
+  const {
+    user,
+    error,
+    setError,
+    isLoading,
+    createUserByEmail,
+    signOutUser,
+    loginUserByEmail,
+  } = useAuth();
+  // console.log(user);
+  const handleOnChange = (e: any) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const data = { ...registerData };
+    data[field] = value;
+    setRegisterData(data);
+}
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(registerData);
+    if (registerData==={}||registerData.email===''||registerData.password===''||registerData.firstName===''||registerData.lastName==='') {
+      setError("Please enter your first name, email and password")
+    } else {
+      console.log("creating");
+      
+      createUserByEmail(registerData.email, registerData.password,registerData.firstName,registerData.lastName);
+    }
+    e.preventDefault();
   };
+
+
   return (
     <div>
-      <Typography>{error?error:''}</Typography>
+      <Typography>{error ? error : ""}</Typography>
       <Box
         sx={{
           display: "flex",
@@ -78,6 +98,7 @@ const Register = () => {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={handleOnChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -88,6 +109,7 @@ const Register = () => {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={handleOnChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +120,7 @@ const Register = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleOnChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -109,6 +132,7 @@ const Register = () => {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleOnChange}
                 />
               </Grid>
               <Grid item xs={12}>
