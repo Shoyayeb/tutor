@@ -10,7 +10,7 @@ import initializeFirebase from "../Firebase/firebase.init";
 
 initializeFirebase();
 const useFirebase = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<[] | {} | null>([]);
   const [error, setError] = useState("");
 
   const auth = getAuth();
@@ -19,22 +19,19 @@ const useFirebase = () => {
   const createUserByEmail = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        console.log(userCredential);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setError(errorMessage);
+        setError(error.message);
       });
   };
+  console.log(typeof createUserByEmail);
 
   // login user with email and password
   const loginUserByEmail = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
+        console.log(userCredential);
       })
       .catch((error) => {
         setError(error.message);
@@ -47,11 +44,9 @@ const useFirebase = () => {
       if (user) {
         setUser(user);
         console.log(user);
-        
       } else {
         setUser({});
         console.log(user);
-        
       }
     });
     return () => unsubscribe();
