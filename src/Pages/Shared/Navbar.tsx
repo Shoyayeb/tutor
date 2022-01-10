@@ -29,7 +29,7 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
   const { user,signOutUser, } = useAuth();
-  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  const navLinks = ['Home', 'Features', 'Services', 'Dashboard'];
   const defaultColor = lightBlue[400];
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(defaultColor),
@@ -71,54 +71,21 @@ const Navbar = () => {
             tutor
           </Typography>
           <nav>
+          
+          {navLinks.map(link =>
             <Link
               style={{ textTransform: "none" }}
               component={RouterLink}
-              to="/home"
+              to={`/${link.toLowerCase()}`}
               variant="button"
               color="text.primary"
-              href="#"
               underline="none"
               sx={{ my: 1, mx: 1.5 }}
+              key={link}
             >
-              Home
+              {link}
             </Link>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to="/login"
-              variant="button"
-              color="text.primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              About Us
-            </Link>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to="/login"
-              variant="button"
-              color="text.primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Services
-            </Link>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to="/register"
-              variant="button"
-              color="text.primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Register
-            </Link>
+          )}
           </nav>
           {user.email ? (
             <Box sx={{ flexGrow: 0 }}>
