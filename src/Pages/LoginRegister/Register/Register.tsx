@@ -9,10 +9,10 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import bg from "../../../assets/bg.png";
 import LoginBanner from "../../../assets/loginRegister.png";
 import useAuth from "../../../Hooks/useAuth";
-// import useAuth from "../../../Hooks/useAuth";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState<any>({});
@@ -32,20 +32,28 @@ const Register = () => {
     const data = { ...registerData };
     data[field] = value;
     setRegisterData(data);
-}
-  
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(registerData);
-    if (registerData==={}||registerData.email===''||registerData.password===''||registerData.firstName===''||registerData.lastName==='') {
-      setError("Please enter your first name, email and password")
-    } else {
-      console.log("creating");
-      
-      createUserByEmail(registerData.email, registerData.password,registerData.firstName,registerData.lastName);
-    }
-    e.preventDefault();
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(registerData);
+    if (
+      registerData === {} ||
+      !registerData.email ||
+      !registerData.password ||
+      !registerData.firstName
+    ) {
+      setError("Please enter your name, email and password");
+    } else {
+      console.log("creating");
+      createUserByEmail(
+        registerData.email,
+        registerData.password,
+        registerData.firstName,
+        registerData.lastName
+      );
+    }
+  };
 
   return (
     <div>
@@ -103,7 +111,6 @@ const Register = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -154,7 +161,7 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link variant="body2" component={RouterLink} to="/login">
                   Already have an account? Sign in
                 </Link>
               </Grid>

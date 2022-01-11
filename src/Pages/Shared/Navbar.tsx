@@ -1,14 +1,35 @@
-import { Link, Typography } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Button, { ButtonProps } from "@mui/material/Button";
+import {
+  AppBar, Avatar, Box, Button, ButtonProps, CssBaseline, GlobalStyles, IconButton,
+  Link,
+  Menu,
+  MenuItem, styled, Toolbar, Tooltip,
+  Typography
+} from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { styled } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+
 const Navbar = () => {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const { user,signOutUser, } = useAuth();
+  const navLinks = ['Home', 'Features', 'Services', 'Dashboard'];
   const defaultColor = lightBlue[400];
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(defaultColor),
@@ -17,6 +38,7 @@ const Navbar = () => {
       backgroundColor: lightBlue[800],
     },
   }));
+  console.log(user.email);
 
   return (
     <React.Fragment>
@@ -49,64 +71,61 @@ const Navbar = () => {
             tutor
           </Typography>
           <nav>
+          
+          {navLinks.map(link =>
             <Link
               style={{ textTransform: "none" }}
               component={RouterLink}
-              to="/home"
+              to={`/${link.toLowerCase()}`}
               variant="button"
               color="text.primary"
-              href="#"
               underline="none"
               sx={{ my: 1, mx: 1.5 }}
+              key={link}
             >
-              Home
+              {link}
             </Link>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to="/login"
-              variant="button"
-              color="text.primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              About Us
-            </Link>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to="/login"
-              variant="button"
-              color="text.primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Services
-            </Link>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to="/register"
-              variant="button"
-              color="text.primary"
-              href="#"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Register
-            </Link>
+          )}
           </nav>
-          <RouterLink to="/login">
-            <ColorButton
-              style={{ textTransform: "none", color: "white" }}
-              variant="contained"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Login/Register
-            </ColorButton>
-          </RouterLink>
+          {user.email ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={signOutUser}>
+                    <Typography textAlign="center">Log Out</Typography>
+                  </MenuItem>
+              </Menu>
+            </Box>
+          ) : (
+            <RouterLink to="/login">
+              <ColorButton
+                style={{ textTransform: "none", color: "white" }}
+                variant="contained"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                Login/Register
+              </ColorButton>
+            </RouterLink>
+          )}
         </Toolbar>
       </AppBar>
     </React.Fragment>
