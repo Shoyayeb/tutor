@@ -8,6 +8,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import bg from "../../../assets/bg.png";
 import BannerImage from "../../../assets/kidsOnline.png";
+import './Banner.css';
 
 const Banner = () => {
   // const defaultColor = lightBlue[400];
@@ -38,13 +39,13 @@ const Banner = () => {
           sx={{
             // position: "relative",
             py: 5,
-            display: {xs: "block",md:"flex"},
+            display: { xs: "block", md: "flex" },
             justifyContent: "center",
             // alignItems: "center",
           }}
         >
           {/* slogan */}
-          <Container sx={{ width: "50%", mt: { xs: 0, md: 5 }, display:"flex",flexDirection: "column",gap:5}}>
+          <Container sx={{ width: "50%", mt: { xs: 0, md: 5 }, display: "flex", flexDirection: "column", gap: 5 }}>
             <Typography
               sx={{ color: "black", fontSize: "40px", fontWeight: "500" }}
             >
@@ -53,7 +54,7 @@ const Banner = () => {
               World
             </Typography>
             <Box>
-              <RouterLink to="/login">
+              <RouterLink style={{textDecoration:'none'}} to="/login">
                 <ColorButton
                   style={{ textTransform: "none", color: "white" }}
                   variant="contained"
@@ -67,18 +68,21 @@ const Banner = () => {
           </Container>
           {/* img */}
           <div style={{ width: "50%", position: "relative" }}>
-            <img
-              src={BannerImage}
-              style={{
-                width: "100%",
-                filter:
-                  "blur(35px) brightness(120%) contrast(130%)",
-                position: "absolute",
-                inset: 0,
-              }}
-              alt="banner"
-              loading="lazy"
-            />
+           
+              <img
+              className='bannerImageFilter'
+                src={BannerImage}
+                style={{
+                  width: "100%",
+                  filter:
+                    "blur(35px) brightness(120%) contrast(130%)",
+                  position: "absolute",
+                  inset: 0,
+               
+                }}
+                alt="banner"
+                loading="lazy"
+              />
             <img
               src={BannerImage}
               style={{ width: "100%", position: "relative" }}
