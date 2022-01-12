@@ -9,6 +9,7 @@ import { lightBlue } from "@mui/material/colors";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import ErrorModal from "./ErrorModal";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -28,7 +29,7 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const { user,signOutUser, } = useAuth();
+  const { user,signOutUser,error, } = useAuth();
   const navLinks = ['Home', 'Features', 'Services', 'Dashboard'];
   const defaultColor = lightBlue[400];
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -128,6 +129,7 @@ const Navbar = () => {
           )}
         </Toolbar>
       </AppBar>
+      {error?<ErrorModal error={error}></ErrorModal>:''}
     </React.Fragment>
   );
 };
