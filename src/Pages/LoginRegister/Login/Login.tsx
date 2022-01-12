@@ -10,19 +10,42 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { useState } from "react";
 import bg from "../../../assets/bg.png";
 import LoginBanner from "../../../assets/loginRegister1.png";
+import useAuth from '../../../Hooks/useAuth';
 const Login = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+    const [loginData, setLoginData] = useState<any>({});
+    const {
+      setError,
+      loginUserByEmail,
+    } = useAuth();
+    
+    const handleOnChange = (e: any) => {
+      const field = e.target.name;
+      const value = e.target.value;
+      const data = { ...loginData };
+      data[field] = value;
+      setLoginData(data);
+    };
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log(loginData);
+      if (
+        loginData === {} ||
+        !loginData.email ||
+        !loginData.password
+      ) {
+        setError("Please Enter Your Email And Password");
+      } else {
+        console.log("creating");
+        loginUserByEmail(
+          loginData.email,
+          loginData.password
+        );
+      }
+    };
+
   return (
     <Box
       sx={{
@@ -85,6 +108,7 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleOnChange}
             />
             <TextField
               margin="normal"
@@ -95,6 +119,7 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleOnChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -16,11 +16,12 @@ const style = {
   p: 4,
 };
 
-export default function ErrorModal() {
+export default function ErrorModal(props:any) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  console.log(props.error);
+  
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>

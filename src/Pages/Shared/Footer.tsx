@@ -1,12 +1,9 @@
 import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
+import { lightBlue } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { lightBlue } from "@mui/material/colors";
 import { SocialIcon } from 'react-social-icons';
-import { height } from "@mui/system";
 import pay from '../../assets/payment.png';
 
 const Footer = () => {
@@ -15,7 +12,7 @@ const Footer = () => {
     <>
     <Box component="footer" style={{borderBottom:'1px solid gray'}} sx={{ bgcolor: "background.paper", py: 6,px: 4 }}>
       <Grid container >
-        <Grid md={4}>
+        <Grid item={true} md={4}>
        <div style={{marginRight:'50px'}}>
        <Typography
             fontSize="h5.fontSize"
@@ -43,19 +40,19 @@ const Footer = () => {
           </Typography>
        </div>
         </Grid>
-        <Grid md={2}>
+        <Grid item={true} md={2}>
             <Typography style={{fontWeight:'500'}} sx={{mb:3}}>Useful Links</Typography>
             <Typography sx={{fontSize:'14px',my:1}}>About Us</Typography>
             <Typography sx={{fontSize:'14px',my:1}}>Privacy Policy</Typography>
             <Typography sx={{fontSize:'14px',my:1}}>Terms & Conditions</Typography>
             <Typography sx={{fontSize:'14px',my:1}}>Contact Us</Typography>
         </Grid>
-        <Grid md={3}>
+        <Grid item={true} md={3}>
               <Typography sx={{mb:3}}  style={{fontWeight:'500'}}>Contact Us</Typography>
               <Typography sx={{fontSize:'14px',mb:3,mr:2}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit ipsam qui dolore nam fuga voluptatem sit sint non sed debitis</Typography>
               <Typography sx={{fontSize:'14px'}}>+088 01300-00000</Typography>
         </Grid>
-          <Grid md={3}>
+          <Grid item={true} md={3}>
             <Typography sx={{mb:3}}  style={{fontWeight:'500'}}>Follow Us</Typography>
             <span >
             <SocialIcon style={{width:'35px', height:'35px',marginRight:'8px'}} network="facebook" />
@@ -74,10 +71,10 @@ const Footer = () => {
     </Box>
     <Box component="footer" style={{borderBottom:'1px solid gray'}} sx={{ bgcolor: "background.paper", py: 2,px: 4 }}>
     <Grid container>
-      <Grid md={5} style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+      <Grid item={true} md={5} style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
       <Typography sx={{fontSize:'14px',textAlign:'center'}}>Copyright©2022 tutor.org|All Rights Reserved</Typography>
       </Grid>
-      <Grid md={7} style={{display:'flex',justifyContent:'flex-end'}}>
+      <Grid item={true} md={7} style={{display:'flex',justifyContent:'flex-end'}}>
             <img style={{width:'50%',}} src={pay} alt="" />
       </Grid>
     </Grid>

@@ -12,7 +12,7 @@ import initializeFirebase from "../Firebase/firebase.init";
 initializeFirebase();
 const useFirebase = () => {
   const [user, setUser] = useState<[] | {} | null>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 
   const auth: any = getAuth();
@@ -31,7 +31,6 @@ const useFirebase = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log("user created");
-        
         setError("");
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -50,7 +49,6 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-
   // login user with email and password
   const loginUserByEmail = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -61,8 +59,6 @@ const useFirebase = () => {
         setError(error.message);
       });
   };
-
-
   
   // managing user
   useEffect(() => {
