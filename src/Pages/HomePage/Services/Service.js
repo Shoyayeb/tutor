@@ -49,7 +49,7 @@ const Service = () => {
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Praesentium cupiditate quos suscipit totam a nulla eveniet
                 alias. Magnam repellendus, facere rerum mollitia laboriosam fuga
-                officia, sed commodi aliquid perferendis dolorum.
+                officia, sed commodi aliquid perferendis .
               </Typography>
               <div style={{ display: "flex", justifyContent: "center",margin:'0 0 60px 0' }}>
                 <Button style={{backgroundColor:"#fff",color:'#1090CB'}}>View More</Button>
