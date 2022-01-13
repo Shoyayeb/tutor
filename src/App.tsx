@@ -8,8 +8,8 @@ import HomePage from "./Pages/HomePage/HomePage/HomePage";
 import Login from "./Pages/LoginRegister/Login/Login";
 import Register from "./Pages/LoginRegister/Register/Register";
 import NotFound from "./Pages/NotFound/NotFound";
-import Footer from "./Pages/Shared/Footer";
-import Navbar from "./Pages/Shared/Navbar";
+import Footer from "./Pages/Shared/Footer/Footer";
+import Navbar from "./Pages/Shared/Navbar/Navbar";
 
 function App() {
   const theme = createTheme({

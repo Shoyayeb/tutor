@@ -4,7 +4,7 @@ import { lightBlue } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { SocialIcon } from 'react-social-icons';
-import pay from '../../assets/payment.png';
+import pay from '../../../assets/payment.png';
 
 const Footer = () => {
   const defaultColor = lightBlue[400];
