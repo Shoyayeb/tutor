@@ -1,8 +1,7 @@
 import {
   AppBar, Avatar, Box, Button, ButtonProps, CssBaseline, GlobalStyles, IconButton,
   Link,
-  Menu,
-  MenuItem, styled, Toolbar, Tooltip,
+  Menu, styled, Toolbar, Tooltip,
   Typography
 } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
@@ -10,6 +9,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import ErrorModal from "../Modals/ErrorModal";
+import NavProfileModal from '../Modals/NavProfileModal';
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,7 +29,7 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const { user,signOutUser,error, } = useAuth();
+  const { user,error, } = useAuth();
   const navLinks = ['Home', 'Features', 'Services', 'Dashboard'];
   const defaultColor = lightBlue[400];
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -39,7 +39,7 @@ const Navbar = () => {
       backgroundColor: lightBlue[800],
     },
   }));
-  console.log(user.email);
+  console.log(user);
 
   return (
     <React.Fragment>
@@ -111,9 +111,11 @@ const Navbar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem onClick={signOutUser}>
+                {/* <MenuItem onClick={signOutUser}>
                     <Typography textAlign="center">Log Out</Typography>
-                  </MenuItem>
+                  </MenuItem> */}
+                  <NavProfileModal></NavProfileModal>
+
               </Menu>
             </Box>
           ) : (
