@@ -8,8 +8,8 @@ import {
 import { lightBlue } from "@mui/material/colors";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
-import ErrorModal from "./ErrorModal";
+import useAuth from "../../../Hooks/useAuth";
+import ErrorModal from "../Modals/ErrorModal";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
