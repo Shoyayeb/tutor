@@ -17,7 +17,7 @@ import LoginButton from "./LoginButton";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
-  const { usingEmail } = useAuth();
+  const { usingEmail,socialSignIn } = useAuth();
 
   return (
     <Box
@@ -72,6 +72,7 @@ const Login = () => {
                 aria-label="google"
                 color="error"
                 sx={{ width: "75px", height: "75px", boxShadow: 2 }}
+                onClick={()=>socialSignIn("google")}
               >
                 <GoogleIcon fontSize="large"></GoogleIcon>
               </IconButton>
@@ -79,6 +80,7 @@ const Login = () => {
                 aria-label="apple"
                 color="default"
                 sx={{ width: "75px", boxShadow: 2, height: "75px" }}
+                onClick={()=>socialSignIn("apple")}
               >
                 <AppleIcon fontSize="large"></AppleIcon>
               </IconButton>
@@ -91,6 +93,7 @@ const Login = () => {
                   fontSize: "15px",
                   boxShadow: 2,
                 }}
+                onClick={()=>socialSignIn("facebook")}
               >
                 <FacebookIcon fontSize="large"></FacebookIcon>
               </IconButton>
