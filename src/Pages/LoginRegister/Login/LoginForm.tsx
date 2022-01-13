@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 const LoginForm = () => {
   const [loginData, setLoginData] = useState<any>({});
@@ -69,12 +70,12 @@ const LoginForm = () => {
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link href="#" variant="body2">
+            <Link component={RouterLink} to="/forgetpass" variant="body2">
               Forgot password?
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link component={RouterLink} to="/register" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

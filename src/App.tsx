@@ -3,9 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AuthProvider from "./Context/AuthProvider/AuthProvider";
-import Feedback from "./Pages/HomePage/Feedback/Feedback";
 import HomePage from "./Pages/HomePage/HomePage/HomePage";
-import Service from "./Pages/HomePage/Services/Service";
 import Login from "./Pages/LoginRegister/Login/Login";
 import Register from "./Pages/LoginRegister/Register/Register";
 import NotFound from "./Pages/NotFound/NotFound";
@@ -39,8 +37,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Service></Service>
-         <Feedback></Feedback>
         <Footer />
       </ThemeProvider>
     </AuthProvider>

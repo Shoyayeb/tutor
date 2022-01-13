@@ -43,6 +43,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
+      {error?<ErrorModal error={error}></ErrorModal>:''}
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
@@ -131,7 +132,7 @@ const Navbar = () => {
           )}
         </Toolbar>
       </AppBar>
-      {error?<ErrorModal error={error}></ErrorModal>:''}
+      
     </React.Fragment>
   );
 };

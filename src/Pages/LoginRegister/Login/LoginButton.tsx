@@ -1,12 +1,15 @@
+import { Key } from "@mui/icons-material";
 import AppleIcon from "@mui/icons-material/Apple";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import React from "react";
+import useAuth from '../../../Hooks/useAuth';
 
 const LoginButton = () => {
+  const { setUsingEmail } = useAuth();
+
   return (
     <div>
       <Box
@@ -14,45 +17,59 @@ const LoginButton = () => {
           display: "flex",
           flexDirection: "column",
           "& > *": {
-            // m: 1,
+            mt: 3,
           },
         }}
       >
-        <ButtonGroup
-          orientation="vertical"
-          aria-label="vertical contained button group"
-          variant="outlined"
-          fullWidth={true}
-          size="large"
+        <Box
           sx={{
-              fontSize:"5rem"
+              display: "inline-flex",
+              flexDirection:"column",
+              gap:"1rem",
           }}
         >
           <Button
-            key="one"
-            startIcon={<GoogleIcon />}
+            key="google"
+            startIcon={<GoogleIcon sx={{fontSize:40}} />}
             color="error"
+            variant="outlined"
+            sx={{fontSize:"1.2rem"}}
           >
             {" "}
             Login with Google
           </Button>
           <Button
-            key="one"
-            startIcon={<FacebookIcon />}
+            key="facebook"
+            startIcon={<FacebookIcon sx={{fontSize:40}} />}
             color="info"
+            variant="outlined"
+            sx={{fontSize:"1.2rem"}}
           >
             {" "}
-            Login with Google
+            Login with FaceBook
           </Button>
           <Button
-            key="one"
-            startIcon={<AppleIcon />}
+            key="apple"
+            startIcon={<AppleIcon sx={{fontSize:40}} />}
             color="inherit"
+            variant="outlined"
+            sx={{fontSize:"1.2rem"}}
           >
             {" "}
-            Login with Google
+            Login with Apple
           </Button>
-        </ButtonGroup>
+          <Button
+            key="email"
+            startIcon={<Key sx={{fontSize:40}} />}
+            color="inherit"
+            variant="outlined"
+            sx={{fontSize:"1.2rem"}}
+            onClick={()=>setUsingEmail(true)}
+          >
+            {" "}
+            Login with Email
+          </Button>
+        </Box>
       </Box>
     </div>
   );

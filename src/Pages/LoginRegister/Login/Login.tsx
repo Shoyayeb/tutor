@@ -9,14 +9,15 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React from "react";
 import bg from "../../../assets/bg.png";
 import LoginBanner from "../../../assets/loginRegister1.png";
+import useAuth from '../../../Hooks/useAuth';
 import LoginButton from "./LoginButton";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
-  const [usingEmail, setUsingEmail] = useState<boolean>(false);
+  const { usingEmail } = useAuth();
 
   return (
     <Box
