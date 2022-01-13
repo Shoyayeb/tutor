@@ -1,4 +1,8 @@
+import AppleIcon from "@mui/icons-material/Apple";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,49 +12,42 @@ import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 import bg from "../../../assets/bg.png";
 import LoginBanner from "../../../assets/loginRegister1.png";
-import useAuth from '../../../Hooks/useAuth';
+import useAuth from "../../../Hooks/useAuth";
+
 const Login = () => {
-    const [loginData, setLoginData] = useState<any>({});
-    const {
-      setError,
-      loginUserByEmail,
-    } = useAuth();
-    
-    const handleOnChange = (e: any) => {
-      const field = e.target.name;
-      const value = e.target.value;
-      const data = { ...loginData };
-      data[field] = value;
-      setLoginData(data);
-    };
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      console.log(loginData);
-      if (
-        loginData === {} ||
-        !loginData.email ||
-        !loginData.password
-      ) {
-        setError("Please Enter Your Email And Password");
-      } else {
-        console.log("creating");
-        loginUserByEmail(
-          loginData.email,
-          loginData.password
-        );
-      }
-    };
+  const [loginData, setLoginData] = useState<any>({});
+  const { setError, loginUserByEmail } = useAuth();
+
+  const handleOnChange = (e: any) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const data = { ...loginData };
+    data[field] = value;
+    setLoginData(data);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(loginData);
+    if (loginData === {} || !loginData.email || !loginData.password) {
+      setError("Please Enter Your Email And Password");
+    } else {
+      console.log("creating");
+      loginUserByEmail(loginData.email, loginData.password);
+    }
+  };
 
   return (
     <Box
       sx={{
         display: "flex",
-        pt:5,
+        pt: 5,
         pb: 10,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -145,6 +142,29 @@ const Login = () => {
               </Grid>
             </Grid>
           </Box>
+          <Stack direction="row" spacing={5}>
+            <IconButton
+              aria-label="google"
+              color="error"
+              sx={{ width: "75px", height: "75px" }}
+            >
+              <GoogleIcon fontSize="large"></GoogleIcon>
+            </IconButton>
+            <IconButton
+              aria-label="fingerprint"
+              color="default"
+              sx={{ width: "75px", height: "75px" }}
+            >
+              <AppleIcon fontSize="large"></AppleIcon>
+            </IconButton>
+            <IconButton
+              aria-label="facebook"
+              color="info"
+              sx={{ width: "75px", height: "75px", fontSize: "15px" }}
+            >
+              <FacebookIcon fontSize="large"></FacebookIcon>
+            </IconButton>
+          </Stack>
         </Box>
       </Container>
     </Box>
