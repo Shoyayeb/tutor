@@ -1,8 +1,12 @@
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   getAuth,
+  GoogleAuthProvider,
+  OAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile
 } from "firebase/auth";
@@ -17,6 +21,42 @@ const useFirebase = () => {
   const [usingEmail, setUsingEmail] = useState<boolean>(false);
 
   const auth: any = getAuth();
+  auth.useDeviceLanguage();
+
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
+  const appleProvider = new OAuthProvider("apple.com");
+
+  // google sign in
+  const socialSignIn = (socialProvider:string) => {
+    if (socialProvider === "google") {
+      signInWithPopup(auth, googleProvider)
+      .then((result: any) => {
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+    } else if(socialProvider === "facebook") {
+      signInWithPopup(auth, facebookProvider)
+      .then((result: any) => {
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+    } else if(socialProvider === "apple") {
+      signInWithPopup(auth, appleProvider)
+      .then((result: any) => {
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+    }
+    
+      
+  };
 
   //   create user with email and password
   const createUserByEmail = (
@@ -95,6 +135,7 @@ const useFirebase = () => {
     usingEmail,
     setUsingEmail,
     isLoading,
+    socialSignIn,
     createUserByEmail,
     signOutUser,
     loginUserByEmail,

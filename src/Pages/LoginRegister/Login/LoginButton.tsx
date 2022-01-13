@@ -8,8 +8,8 @@ import React from "react";
 import useAuth from '../../../Hooks/useAuth';
 
 const LoginButton = () => {
-  const { setUsingEmail } = useAuth();
-
+  const { setUsingEmail ,socialSignIn} = useAuth();
+  
   return (
     <div>
       <Box
@@ -33,41 +33,44 @@ const LoginButton = () => {
             startIcon={<GoogleIcon sx={{fontSize:40}} />}
             color="error"
             variant="outlined"
-            sx={{fontSize:"1.2rem"}}
+            sx={{fontSize:"1.2rem",textTransform: "none"}}
+            onClick={()=>socialSignIn("google")}
           >
             {" "}
-            Login with Google
+            Continue with Google
           </Button>
           <Button
             key="facebook"
             startIcon={<FacebookIcon sx={{fontSize:40}} />}
             color="info"
             variant="outlined"
-            sx={{fontSize:"1.2rem"}}
+            sx={{fontSize:"1.2rem",textTransform: "none"}}
+            onClick={()=>socialSignIn("facebook")}
           >
             {" "}
-            Login with FaceBook
+            Continue with FaceBook
           </Button>
           <Button
             key="apple"
             startIcon={<AppleIcon sx={{fontSize:40}} />}
             color="inherit"
             variant="outlined"
-            sx={{fontSize:"1.2rem"}}
+            sx={{fontSize:"1.2rem",textTransform: "none"}}
+            onClick={()=>socialSignIn("apple")}
           >
             {" "}
-            Login with Apple
+            Continue with Apple
           </Button>
           <Button
             key="email"
             startIcon={<Key sx={{fontSize:40}} />}
             color="inherit"
             variant="outlined"
-            sx={{fontSize:"1.2rem"}}
+            sx={{fontSize:"1.2rem",textTransform: "none"}}
             onClick={()=>setUsingEmail(true)}
           >
             {" "}
-            Login with Email
+            Continue with Email
           </Button>
         </Box>
       </Box>
