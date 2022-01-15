@@ -18,7 +18,7 @@ const useFirebase = () => {
   const [user, setUser] = useState<[] | {} | null>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
-  const [usingEmail, setUsingEmail] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const auth: any = getAuth();
   auth.useDeviceLanguage();
@@ -28,34 +28,32 @@ const useFirebase = () => {
   const appleProvider = new OAuthProvider("apple.com");
 
   // google sign in
-  const socialSignIn = (socialProvider:string) => {
+  const socialSignIn = (socialProvider: string) => {
     if (socialProvider === "google") {
       signInWithPopup(auth, googleProvider)
-      .then((result: any) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-    } else if(socialProvider === "facebook") {
+        .then((result: any) => {
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else if (socialProvider === "facebook") {
       signInWithPopup(auth, facebookProvider)
-      .then((result: any) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-    } else if(socialProvider === "apple") {
+        .then((result: any) => {
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else if (socialProvider === "apple") {
       signInWithPopup(auth, appleProvider)
-      .then((result: any) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+        .then((result: any) => {
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
     }
-    
-      
   };
 
   //   create user with email and password
@@ -131,9 +129,9 @@ const useFirebase = () => {
     user,
     error,
     setError,
-    usingEmail,
-    setUsingEmail,
     isLoading,
+    isLogin,
+    setIsLogin,
     socialSignIn,
     createUserByEmail,
     signOutUser,
