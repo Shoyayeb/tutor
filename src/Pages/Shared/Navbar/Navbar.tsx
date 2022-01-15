@@ -1,7 +1,17 @@
 import {
-  AppBar, Avatar, Box, Button, ButtonProps, CssBaseline, GlobalStyles, IconButton,
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  ButtonProps,
+  CssBaseline,
+  GlobalStyles,
+  IconButton,
   Link,
-  Menu, styled, Toolbar, Tooltip,
+  Menu,
+  styled,
+  Toolbar,
+  Tooltip,
   Typography
 } from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
@@ -9,7 +19,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import ErrorModal from "../Modals/ErrorModal";
-import NavProfileModal from '../Modals/NavProfileModal';
+import NavProfileModal from "../Modals/NavProfileModal";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,8 +39,11 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const { user,error, } = useAuth();
-  const navLinks = ['Home', 'Features', 'Services', 'Dashboard'];
+  const { user, error } = useAuth();
+  console.log(user);
+
+  const avatar: any = user?.displayName?.charAt(0);
+  const navLinks = ["Home", "Features", "Services", "Dashboard"];
   const defaultColor = lightBlue[400];
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(defaultColor),
@@ -39,11 +52,10 @@ const Navbar = () => {
       backgroundColor: lightBlue[800],
     },
   }));
-  console.log(user);
 
   return (
     <React.Fragment>
-      {error?<ErrorModal error={error}></ErrorModal>:''}
+      {error ? <ErrorModal error={error}></ErrorModal> : ""}
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
@@ -73,27 +85,26 @@ const Navbar = () => {
             tutor
           </Typography>
           <nav>
-          
-          {navLinks.map(link =>
-            <Link
-              style={{ textTransform: "none" }}
-              component={RouterLink}
-              to={`/${link.toLowerCase()}`}
-              variant="button"
-              color="text.primary"
-              underline="none"
-              sx={{ my: 1, mx: 1.5 }}
-              key={link}
-            >
-              {link}
-            </Link>
-          )}
+            {navLinks.map((link) => (
+              <Link
+                style={{ textTransform: "none" }}
+                component={RouterLink}
+                to={`/${link.toLowerCase()}`}
+                variant="button"
+                color="text.primary"
+                underline="none"
+                sx={{ my: 1, mx: 1.5 }}
+                key={link}
+              >
+                {link}
+              </Link>
+            ))}
           </nav>
           {user.email ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={user.displayName}src={user.photoURL}>{avatar}</Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -112,15 +123,11 @@ const Navbar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {/* <MenuItem onClick={signOutUser}>
-                    <Typography textAlign="center">Log Out</Typography>
-                  </MenuItem> */}
-                  <NavProfileModal></NavProfileModal>
-
+                <NavProfileModal></NavProfileModal>
               </Menu>
             </Box>
           ) : (
-            <RouterLink style={{textDecoration:'none'}} to="/login">
+            <RouterLink style={{ textDecoration: "none" }} to="/login">
               <ColorButton
                 style={{ textTransform: "none", color: "white" }}
                 variant="contained"
@@ -132,7 +139,6 @@ const Navbar = () => {
           )}
         </Toolbar>
       </AppBar>
-      
     </React.Fragment>
   );
 };
