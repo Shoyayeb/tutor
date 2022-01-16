@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
   OAuthProvider,
@@ -8,6 +7,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  TwitterAuthProvider,
+  updatePhoneNumber,
   updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
@@ -24,7 +25,7 @@ const useFirebase = () => {
   auth.useDeviceLanguage();
 
   const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider();
+  const twitterProvider = new TwitterAuthProvider();
   const appleProvider = new OAuthProvider("apple.com");
 
   // google sign in
@@ -37,8 +38,8 @@ const useFirebase = () => {
         .catch((error) => {
           setError(error.message);
         });
-    } else if (socialProvider === "facebook") {
-      signInWithPopup(auth, facebookProvider)
+    } else if (socialProvider === "twitter") {
+      signInWithPopup(auth, twitterProvider)
         .then((result: any) => {
           setError("");
         })
@@ -61,7 +62,8 @@ const useFirebase = () => {
     email: string,
     password: string,
     firstName: string,
-    lastName: string
+    lastName: string,
+    phone: any
   ) => {
     setIsLoading(true);
     const name = firstName + " " + lastName;
@@ -70,6 +72,7 @@ const useFirebase = () => {
       .then((userCredential) => {
         console.log("user created");
         setError("");
+        updatePhoneNumber(auth.currentUser, phone);
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: null,

@@ -1,5 +1,5 @@
+import { Twitter } from "@mui/icons-material";
 import AppleIcon from "@mui/icons-material/Apple";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { IconButton } from "@mui/material";
@@ -50,7 +50,7 @@ const Login = () => {
           loading="lazy"
         />
       </Container>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
@@ -63,7 +63,7 @@ const Login = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {isLogin ? "Sign in" : "Sign up"}
           </Typography>
           {/* forms */}
 
@@ -88,7 +88,7 @@ const Login = () => {
               <AppleIcon fontSize="large"></AppleIcon>
             </IconButton>
             <IconButton
-              aria-label="facebook"
+              aria-label="twitter"
               color="info"
               sx={{
                 width: "75px",
@@ -96,9 +96,9 @@ const Login = () => {
                 fontSize: "15px",
                 boxShadow: 2,
               }}
-              onClick={() => socialSignIn("facebook")}
+              onClick={() => socialSignIn("twitter")}
             >
-              <FacebookIcon fontSize="large"></FacebookIcon>
+              <Twitter fontSize="large"></Twitter>
             </IconButton>
           </Stack>
         </Box>
