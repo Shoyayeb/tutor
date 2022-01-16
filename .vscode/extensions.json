@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "tabnine.tabnine-vscode",
+        "dbaeumer.vscode-eslint",
+        "jawandarajbir.react-vscode-extension-pack",
+        "xabikos.reactsnippets",
+        "vscode-icons-team.vscode-icons",
+        "nucllear.vscode-extension-auto-import",
+        "formulahendry.auto-rename-tag",
+        "shakram02.bash-beautify",
+        "naumovs.color-highlight"
+    ]
+}

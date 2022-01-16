@@ -1,32 +1,27 @@
-import { MenuItem } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import { CardHeader } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import React from "react";
-import useAuth from '../../../Hooks/useAuth';
+import useAuth from "./../../../Hooks/useAuth";
 
 const NavProfileModal = () => {
-  const { user,signOutUser,error, } = useAuth();
+  const { signOutUser } = useAuth();
   return (
     <div>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={user.photoURL}
-          alt="green iguana"
+      <Card sx={{ minWidth: 275 }}>
+        <CardHeader
+          avatar={<Avatar aria-label="recipe">S</Avatar>}
+          title="Shrimp and Chorizo Paella"
+          subheader="September 14, 2016"
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {user.displayName}
-          </Typography>
-        </CardContent>
+        <CardContent></CardContent>
         <CardActions>
-          <MenuItem onClick={signOutUser}>
-                    <Typography textAlign="center">Log Out</Typography>
-                  </MenuItem>
+          <Button size="small" onClick={signOutUser}>
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </div>

@@ -67,7 +67,6 @@ const useFirebase = () => {
   ) => {
     setIsLoading(true);
     const name = firstName + " " + lastName;
-    const avatar = firstName.charAt(0);
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -75,7 +74,7 @@ const useFirebase = () => {
         setError("");
         updateProfile(auth.currentUser, {
           displayName: name,
-          photoURL: avatar,
+          photoURL: null,
         })
           .then(() => {
             setError("");
