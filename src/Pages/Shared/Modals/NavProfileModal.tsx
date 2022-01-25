@@ -8,19 +8,19 @@ import React from "react";
 import useAuth from "./../../../Hooks/useAuth";
 
 const NavProfileModal = () => {
-  const { signOutUser } = useAuth();
+  const { signOutUser,user } = useAuth();
   return (
     <div>
       <Card sx={{ minWidth: 275 }}>
         <CardHeader
-          avatar={<Avatar aria-label="recipe">S</Avatar>}
-          title="Shrimp and Chorizo Paella"
+          avatar={<Avatar aria-label={user.displayName} src={user?.photoURL||null}>S</Avatar>}
+          title={user.displayName}
           subheader="September 14, 2016"
         />
         <CardContent></CardContent>
         <CardActions>
           <Button size="small" onClick={signOutUser}>
-            Learn More
+            Log Out
           </Button>
         </CardActions>
       </Card>

@@ -10,9 +10,7 @@ import { Link as RouterLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 const LoginForm = () => {
   const [loginData, setLoginData] = useState<any>({});
-
-  const { setError, loginUserByEmail } = useAuth();
-
+  const { setError, loginUserByEmail, setIsLogin } = useAuth();
   const handleOnChange = (e: any) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -75,8 +73,8 @@ const LoginForm = () => {
             </Link>
           </Grid>
           <Grid item>
-            <Link component={RouterLink} to="/register" variant="body2">
-              {"Don't have an account? Sign Up"}
+            <Link variant="body2" component="button" onClick={() => setIsLogin(false)}>
+              Don't have an account? Sign Up
             </Link>
           </Grid>
         </Grid>

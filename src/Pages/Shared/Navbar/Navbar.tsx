@@ -22,20 +22,12 @@ import ErrorModal from "../Modals/ErrorModal";
 import NavProfileModal from "../Modals/NavProfileModal";
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -127,7 +119,7 @@ const Navbar = () => {
               </Menu>
             </Box>
           ) : (
-            <RouterLink style={{ textDecoration: "none" }} to="/login">
+            <RouterLink style={{ textDecoration: "none" }} to="/sign_in">
               <ColorButton
                 style={{ textTransform: "none", color: "white" }}
                 variant="contained"

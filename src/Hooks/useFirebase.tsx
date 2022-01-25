@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
   OAuthProvider,
@@ -8,6 +7,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  TwitterAuthProvider,
+  updatePhoneNumber,
   updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
@@ -18,44 +19,42 @@ const useFirebase = () => {
   const [user, setUser] = useState<[] | {} | null>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
-  const [usingEmail, setUsingEmail] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const auth: any = getAuth();
   auth.useDeviceLanguage();
 
   const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider();
+  const twitterProvider = new TwitterAuthProvider();
   const appleProvider = new OAuthProvider("apple.com");
 
   // google sign in
-  const socialSignIn = (socialProvider:string) => {
+  const socialSignIn = (socialProvider: string) => {
     if (socialProvider === "google") {
       signInWithPopup(auth, googleProvider)
-      .then((result: any) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-    } else if(socialProvider === "facebook") {
-      signInWithPopup(auth, facebookProvider)
-      .then((result: any) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-    } else if(socialProvider === "apple") {
+        .then((result: any) => {
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else if (socialProvider === "twitter") {
+      signInWithPopup(auth, twitterProvider)
+        .then((result: any) => {
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else if (socialProvider === "apple") {
       signInWithPopup(auth, appleProvider)
-      .then((result: any) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+        .then((result: any) => {
+          setError("");
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
     }
-    
-      
   };
 
   //   create user with email and password
@@ -63,7 +62,8 @@ const useFirebase = () => {
     email: string,
     password: string,
     firstName: string,
-    lastName: string
+    lastName: string,
+    phone: any
   ) => {
     setIsLoading(true);
     const name = firstName + " " + lastName;
@@ -72,6 +72,7 @@ const useFirebase = () => {
       .then((userCredential) => {
         console.log("user created");
         setError("");
+        updatePhoneNumber(auth.currentUser, phone);
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: null,
@@ -131,9 +132,9 @@ const useFirebase = () => {
     user,
     error,
     setError,
-    usingEmail,
-    setUsingEmail,
     isLoading,
+    isLogin,
+    setIsLogin,
     socialSignIn,
     createUserByEmail,
     signOutUser,

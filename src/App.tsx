@@ -4,8 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AuthProvider from "./Context/AuthProvider/AuthProvider";
 import HomePage from "./Pages/HomePage/HomePage/HomePage";
-import Login from "./Pages/LoginRegister/Login/Login";
-import Register from "./Pages/LoginRegister/Register/Register";
+import LoginRegister from './Pages/LoginRegister/LoginRegister';
 import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Navbar from "./Pages/Shared/Navbar/Navbar";
@@ -33,8 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/sign_in" element={<LoginRegister />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
