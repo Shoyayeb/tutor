@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -7,9 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  TwitterAuthProvider,
-  updatePhoneNumber,
-  updateProfile
+  TwitterAuthProvider, updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Firebase/firebase.init";
@@ -70,15 +69,22 @@ const useFirebase = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("user created");
+        console.log("user created", auth.currentUser);
         setError("");
-        updatePhoneNumber(auth.currentUser, phone);
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: null,
-        })
-          .then(() => {
-            setError("");
+        });
+        axios
+          .get("http://localhost:5500/userupdate", {
+            headers: {
+              email: `${auth.currentUser.uid}`,
+            },
+          })
+          .then((res) => {
+            setError(res.data);
+            console.log(res.data);
+            
           })
           .catch((error) => {
             setError(error.message);
