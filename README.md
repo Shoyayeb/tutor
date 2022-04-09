@@ -9,3 +9,18 @@
 
 ## 👍 Everyone is welcome to contribute
 #### Fork this repository and commit with pull request. I'll merge it.
+
+
+## Current State:
+#### Authentication and basic ui added using MUI and Firebase
+
+
+- [x] Homepage UI
+- [x] Authentication
+- [x] React-Router Routes
+- [x] Firebase Deploy
+- [ ] Dashboard UI
+- [ ] Admin Dashboard Functionality
+- [ ] Tutor Functionality
+- [ ] Dashboard Visualization
+- [ ] Database
